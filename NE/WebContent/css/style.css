@@ -1,72 +1,111 @@
 li {
-    list-style: none;
+	list-style: none;
 }
+
 li:before {
-    content: "✓ ";
+	content: "✓ ";
 }
 
 input {
-    border: none;
-    width: 40px;
-    font-size: 14px;
-    padding: 2px;
+	border: none;
+	width: 40px;
+	font-size: 14px;
+	padding: 2px;
 }
 
 input:hover {
-    background-color: #eee;
+	background-color: #eee;
 }
 
 input:focus {
-    background-color: #ccf;
+	background-color: #ccf;
 }
 
-input:not(:focus) {
-    text-align: right;
-}
+input
+:not
+ 
+(
+:focus
+ 
+)
+{
+text-align
+:
+ 
+right
+;
 
+
+}
 table {
-    border-collapse: collapse;  
+	border-collapse: collapse;
 }
 
 td {
-    border: 1px solid #999;
-    padding: 0;
-    font-weight: bold;
+	border: 1px solid #999;
+	padding: 0;
+	font-weight: bold;
 }
 
 tr:first-child td, td:first-child {
-    background-color: #ccc;
-    padding: 1px 3px;
-    font-weight: bold;
-    text-align: center;
+	background-color: #ccc;
+	padding: 1px 3px;
+	font-weight: bold;
+	text-align: center;
 }
 
 footer {
-    font-size: 80%;
+	font-size: 80%;
 }
 
 h1 {
-text-decoration:none;
-border:0;
-width : 800px;
-height : 110px;
-margin : 0;
-padding : 0;
-background-image : url(NE/img/ntt.jpeg) no-repeat 0 0;
+	text-decoration: none;
+	border: 0;
+	width: 800px;
+	height: 110px;
+	margin: 0;
+	border-style: Solid;
+	background-image: url(NE/img/ntt.jpeg) no-repeat 0 0;
 }
- 
+
 h1 a {
-display : block;
-height : 110px;
-text-indent : -9999px;
+	display: block;
+	height: 110px;
+	text-indent: -9999px;
+	padding: 1px 3px;
 }
 
 .textarea {
-	width : 200px;
-	height : 200px;
+	width: 200px;
+	height: 200px;
 	margin-left: 32px;
 }
 
 .sfondo {
 	background-color: #f1f1f1;
+}
+
+.tabellatitoli {
+	border-style: solid;
+	margin-left: 32px;
+}
+
+hr {
+	align: left;
+	margin-left: 32px;
+	size: 1px;
+	width: 1203px;
+	color: "black";
+}
+
+alertBox {
+	position: relative;
+	width: 300px;
+	min-height: 100px;
+	margin-top: 50px;
+	border: 2px solid #000;
+	background-color: #F2F5F6;
+	background-image: url(alert.png);
+	background-repeat: no-repeat;
+	background-position: 20px 30px;
 }

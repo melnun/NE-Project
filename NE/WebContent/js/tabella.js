@@ -1,10 +1,14 @@
 $(document).ready(
 	function() {
-		for (var i = 0; i < 101; i++) {
+		
+		document.DEBUG=true;
+		for (var i = 0; i < 51; i++) {
 			var row = document.querySelector("table").insertRow(-1);
-			for (var j = 0; j < 27; j++) {
+			for (var j = 0; j < 22; j++) {
 				var letter = String.fromCharCode("A".charCodeAt(0)+ j - 1);
-				console.log("letter=" + letter + " i=" + i + " j="+ j);
+				if(document.DEBUG){
+					console.log("letter=" + letter + " i=" + i + " j="+ j);
+				}
 				/*
 				row.insertCell(-1).innerHTML = i && j ? 
 						"<input id='"+ letter + i + "'/>"
@@ -13,7 +17,7 @@ $(document).ready(
 				if (i && j) {
 					row.insertCell(-1).innerHTML ="<input id='"+ letter + i + "'/>";
 				}else {
-					// INTESTAZIONE!
+					// INTESTAZIONE!  col-md-1 <td class="col-md-1">D</td>
 					row.insertCell(-1).innerHTML =i || letter ; // + " "+i+ " "+j;
 				}
 			}
@@ -57,15 +61,26 @@ $(document).ready(
 					elm.value = DATA[elm.id];
 				} catch (e) {
 				}
-				var data={ "Position" : DATA[elm.id],
-						   "Value" : elm.value};
-				console.log("elm.value "+elm.value);
-				console.log("elm.id "+DATA[elm.id]);
 			});
-			var jsonstr = JSON.stringify(data);
 		})();
 
 		(function() {
 			console.log("Eseguita solo una volta appena sono incontrata da javascript interpreter");
 		})();
+		
+		window.packJson=function(){
+			var dataList=[]; 
+			INPUTS.forEach(function(elm) {
+				if(elm.value != "" ){
+					var data={ "Position" : DATA[elm.id],
+							   "Value" : elm.value};
+					dataList.push(data);
+					console.log("elm.value "+elm.value);
+					console.log("elm.id "+DATA[elm.id]);
+				}
+			});
+			var jsonstr = JSON.stringify(dataList);
+			$("#jsonData").val(jsonstr);
+			alert("Esportazione avvenuta con successo");
+		}
 });

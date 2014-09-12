@@ -4,33 +4,65 @@
 <script src="./js/jquery-1.11.1.js"></script>
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
 <link href="./css/style.css" rel="stylesheet" type="text/css">
-<link href="./css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
-<link href="./css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+<link href="./css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+<link href="./css/bootstrap-theme.css.map" rel="stylesheet"
+	type="text/css">
+<link href="./css/bootstrap-theme.min.css" rel="stylesheet"
+	type="text/css">
 <link href="./css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="./css/bootstrap.css.map" rel="stylesheet" type="text/css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 
 <meta charset="ISO-8859-1">
 <title>Tabella</title>
 </head>
-<body class="sfondo">
- 
-<img src="./img/ntt.jpg" class="img-rounded">
-<h1>Progetto NE</h1>
+<body>
 
-<script type="text/javascript" src="js/tabella.js"></script>
-  
-<table>
-</table>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+				</button>
+				<a class="navbar-brand"
+					href="http://emea.nttdata.com/it/home/index.html" target="_blank">| NTT DATA |</a>
+			</div>
+			<div>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+				</button>
+				<a class="navbar-brand" href="#" onclick="window.packJson()">|
+					Esporta Excel |</a>
+			</div>
+		</div>
+	</div>
+	<div class="jumbotron">
+		<h1>
+			<u>|Pro</u>g<u>etto NE|</u>
+		</h1>
 
-<h2>Esporta Tabella</h2>
+	</div>
 
-<p>
-  <button class="btn btn-large btn-primary" type="button" onclick="">Esporta</button>
-</p>
+	
+	<script type="text/javascript" src="js/tabella.js"></script>
 
-<textarea rows="1" cols="1" class="textarea" >JSon</textarea>
- 
-<footer><p>&copy; 2013 <a href="http://ondras.zarovi.cz/">Ondrej Zara and GG</a></p></footer>
+
+	<div class="col-md-2">
+		<table class="table table-bordered excelt">
+
+		</table>
+		<textarea rows="2" cols="30" id="jsonData"></textarea>
+		<footer>
+			<p>
+				&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
+			</p>
+		</footer>
+	</div>
+	<div></div>
+
+
 </body>
 </html>
