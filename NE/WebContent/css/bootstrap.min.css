@@ -4546,8 +4546,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 }
 
 .navbar-inverse .navbar-brand {
-	color: #777
+	color: orange;
 }
+
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus
 	{

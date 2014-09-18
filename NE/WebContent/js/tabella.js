@@ -1,10 +1,12 @@
 $(document).ready(
 	function() {
 		
-		document.DEBUG=true;
-		for (var i = 0; i < 51; i++) {
+		document.DEBUG=false;
+		var righe=5;  // 50 in prod
+		var colonne=4 ; // 22 in prod
+		for (var i = 0; i < righe+1; i++) {
 			var row = document.querySelector("table").insertRow(-1);
-			for (var j = 0; j < 22; j++) {
+			for (var j = 0; j < colonne; j++) {
 				var letter = String.fromCharCode("A".charCodeAt(0)+ j - 1);
 				if(document.DEBUG){
 					console.log("letter=" + letter + " i=" + i + " j="+ j);
@@ -23,8 +25,10 @@ $(document).ready(
 			}
 		}
 
-		var DATA = {}, INPUTS = [].slice.call(document
-				.querySelectorAll("input"));
+		// WAS document.querySelectorAll("input")
+		var DATA = {}, INPUTS = [].slice.call(
+				document.querySelectorAll(".excelt input")
+				 );
 		INPUTS.forEach(function(elm) {
 			elm.onfocus = function(e) {
 				e.target.value = localStorage[e.target.id] || "";
@@ -72,15 +76,18 @@ $(document).ready(
 			var dataList=[]; 
 			INPUTS.forEach(function(elm) {
 				if(elm.value != "" ){
-					var data={ "Position" : DATA[elm.id],
-							   "Value" : elm.value};
+					var data={  "Position" :elm.id,
+							     "Value" : elm.value};
 					dataList.push(data);
-					console.log("elm.value "+elm.value);
-					console.log("elm.id "+DATA[elm.id]);
+					//console.log("elm.value "+elm.value);
+					//console.log("elm.id "+DATA[elm.id]);
 				}
 			});
 			var jsonstr = JSON.stringify(dataList);
-			$("#jsonData").val(jsonstr);
-			alert("Esportazione avvenuta con successo");
+			$("#saveExcel_jsonData").val(jsonstr);
+			//$("#saveExcel_jsonData").focus();
+			$("#saveExcel").submit();
+			// $(".jsonDest").val(jsonstr);
+			// alert("Esportazione avvenuta con successo");
 		}
 });

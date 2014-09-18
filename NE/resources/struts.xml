@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" extends="struts-default,json-default"
+				namespace="/">
+
+		<interceptors>
+			<interceptor name="isLogged"
+				class="com.ntt.seatlocator.interceptor.IsLoggedInterceptor">
+			</interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="isLogged"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="login">/WEB-INF/pages/login.jsp</result>
+<!-- 			<result name="excel">/WEB-INF/pages/excel.jsp</result> -->
+		</global-results>
+
+		<action name="login" class="com.ntt.seatlocator.action.LoginAction">
+			<result name="input">/WEB-INF/pages/login.jsp</result>
+			<result name="error">/WEB-INF/pages/login.jsp</result>
+			<result name="success">/WEB-INF/pages/excel.jsp</result>
+		</action>
+		
+		<action name="saveExcel" class="com.ntt.seatlocator.action.SaveExcelAction">
+			<result name="input">/WEB-INF/pages/excel.jsp</result>
+			<result name="error">/WEB-INF/pages/excel.jsp</result>
+			<result name="success">/WEB-INF/pages/excel.jsp</result>
+		</action>
+
+	
+	</package>
+
+</struts>
