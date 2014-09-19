@@ -24,6 +24,14 @@
 </head>
 <body>
 
+
+
+	<style>
+.nascosto {
+	visibility: hidden;
+}
+</style>
+
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -54,6 +62,8 @@
 		<h1>
 			<u>|Pro</u>g<u>etto NE|</u>
 		</h1>
+
+
 	</div>
 
 	<%-- <%
@@ -63,29 +73,34 @@
 
 	<script type="text/javascript" src="js/tabella.js"></script>
 
-
+	<div>
 	<div class="col-md-2">
-		<table class="table table-bordered excelt">
 
+		<table class="table table-bordered excelt">
 		</table>
 
-		<h2>Nome del file</h2>
-		<s:form cssClass="form-signin" method="post" action="saveExcel">
-		    <s:textfield type="text" name="filename" /> 
-			
-			<h2>JSon</h2>
-			<s:textarea rows="2" cols="30" name="jsonData" />
-			
-			<s:submit cssClass="btn btn-large btn-primary" type="submit"
-				value="save" align="center"></s:submit>
+	</div>
+	</div>
+	<div>
+	<br />
+	
+		<s:form cssClass="" method="post" action="saveExcel">
+			<s:textfield type="text" size="880" width="70px" cssClass=""
+				name="filename" /> 
+			Nome del file:			
+			<s:textarea rows="2" cols="30" name="jsonData" cssClass="nascosto" />
+
+			<s:submit cssClass="nascosto" type="submit" value="save"
+				align="center"></s:submit>
 		</s:form>
-		
+	</div>
+	
+	<div>
 		<footer>
 			<p>
 				&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
 			</p>
 		</footer>
-		
 	</div>
 
 </body>

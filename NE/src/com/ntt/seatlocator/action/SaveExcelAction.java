@@ -1,9 +1,15 @@
 package com.ntt.seatlocator.action;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
+
+import gestione.file.*;
+import gestione.file.FileManager.getDir;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ActionContext;
@@ -17,20 +23,44 @@ public class SaveExcelAction extends ActionSupport implements SessionAware {
 	private String jsonData;
 	private Map<String, Object> session;
 	
-	public String execute() {
+	public String execute() throws IOException {
 		
+		String username_dir = (String)session.get("username");
+		getDir m = new getDir();
+		if(m.ExistsDir())
+			{
+				if(!m.ExistsJson())
+					m.newFile(username_dir, filename);
+			}
+		else
+			m.creaDir(username_dir);
+			m.newFile(username_dir, filename);
 		logger.info("Requested to save the following json data to file:"+ filename);
 		logger.info(""+jsonData);
 		String f;
+		
 		if(session.get("username")==null){
 			f="login";
 		}else{
 			final String username = (String)session.get("username");			
-			logger.info("Username: "+username);
+			logger.info("Username: "+username);		
+			logger.info("Js: "+jsonData);
 			String destFile="percorsobho/"+username+"/"+filename+".json";
 			logger.info("Saving into..."+destFile);
+			m.WriteFile(jsonData, username_dir, filename);
 			f="success";
 		}
+//		File fileid = new File(filename+".json");
+//		ArrayList<String> lista = new ArrayList<String>();
+//		lista=m.seekFile();
+//		int i=0;
+//		
+//		while(i<11)
+//		{
+//			System.out.println(lista.get(i));
+//		}
+//		System.out.println("File Json: ");
+		
 		return f;
 	}
 	

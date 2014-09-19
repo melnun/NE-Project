@@ -3,7 +3,7 @@ $(document).ready(
 		
 		document.DEBUG=false;
 		var righe=5;  // 50 in prod
-		var colonne=4 ; // 22 in prod
+		var colonne=3 ; // 22 in prod
 		for (var i = 0; i < righe+1; i++) {
 			var row = document.querySelector("table").insertRow(-1);
 			for (var j = 0; j < colonne; j++) {
