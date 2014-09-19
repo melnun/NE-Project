@@ -1,18 +1,14 @@
 package com.ntt.seatlocator.action;
 
-import java.io.File;
+import gestione.file.FileManager;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-import gestione.file.*;
-import gestione.file.FileManager.getDir;
-
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ActionContext;
 
 
 public class SaveExcelAction extends ActionSupport implements SessionAware {
@@ -26,7 +22,7 @@ public class SaveExcelAction extends ActionSupport implements SessionAware {
 	public String execute() throws IOException {
 		
 		String username_dir = (String)session.get("username");
-		getDir m = new getDir();
+		FileManager m = new FileManager();
 		if(m.ExistsDir())
 			{
 				if(!m.ExistsJson())

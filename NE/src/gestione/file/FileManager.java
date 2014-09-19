@@ -4,12 +4,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
 
-	public static class getDir
-	{
-		public static void creaDir(String user)
+	public final String NEDATA_DIR;
+	
+		public FileManager()
+		{			
+			NEDATA_DIR=System.getenv("SystemDrive") + "/NEDATA/";
+		}
+	
+		public  void creaDir(String user)
 		{
 			String Dir = "dir";
 			boolean success = (new File(Dir)).mkdir();
@@ -20,7 +26,7 @@ public class FileManager {
 			}else{
 				System.out.println("Impossibile creare: " + Dir);
 			}
-			Dir = "C:/NEDATA/"+user;
+			Dir = NEDATA_DIR+user;
 			success = (new File(Dir)).mkdirs();
 
 			if (success)
@@ -31,7 +37,7 @@ public class FileManager {
 			}
 		}
 
-		public static void newFile(String user, String filename) {
+		public  void newFile(String user, String filename) {
 			String path = "C:/NEDATA/"+user+"/"+filename+".json";
 
 			try {
@@ -49,7 +55,7 @@ public class FileManager {
 			}
 		}
 
-		public static boolean ExistsDir() {
+		public  boolean ExistsDir() {
 			boolean flag;
 			String path = "C:/NEDATA";
 			File file = new File(path);
@@ -60,7 +66,7 @@ public class FileManager {
 			return flag;
 		}
 
-		public static boolean ExistsJson() {
+		public  boolean ExistsJson() {
 			boolean flag;
 			String path = "C:/NEDATA";
 			File file = new File(path);
@@ -71,7 +77,7 @@ public class FileManager {
 			return flag;
 		}
 
-		public static void WriteFile(String json, String user, String filename){
+		public  void WriteFile(String json, String user, String filename){
 			String path = "C:/NEDATA/"+user+"/"+filename+".json";
 			try {
 				File file = new File(path);
@@ -85,22 +91,23 @@ public class FileManager {
 			}
 		}
 
-//		public static ArrayList seekFile()
-//		{
-//			File dir = new File("C:");
-//			String[] files = dir.list();
-//			ArrayList<String> lista_file = new ArrayList<String>();
-//			String nome_file=".json";
-//			int k=0;
-//			for (int i = 0; i < files.length; i++) {
-//				if (files[i].endsWith(nome_file)) {
-//					lista_file.add(files[i]);
-//					k++;
-//				}
-//			}
-//			return lista_file;
-//		}
+		public  List<String> seekFile(String user)
+		{
+			File dir = new File(NEDATA_DIR+user+"/");
+			String[] files = dir.list();
+			ArrayList<String> jsonFiles = new ArrayList<String>();
+			
+			for(String currentFile: files){
+				if ( (new File(currentFile)).isFile()
+						 && 
+						 currentFile.endsWith(".json") ){
+					jsonFiles.add(currentFile);
+				}
+						 
+			}									
+			return jsonFiles;
+		}
 
-	}
+	
 }
 

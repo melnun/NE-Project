@@ -8,7 +8,7 @@
 <head>
 <script src="./js/jquery-1.11.1.js"></script>
 <link rel="icon" href="./img/NTTData.ico" type="image/x-icon" />
-<link href="./css/style.css" rel="stylesheet" type="text/css">
+
 <link href="./css/bootstrap-theme.css" rel="stylesheet" type="text/css">
 <link href="./css/bootstrap-theme.css.map" rel="stylesheet"
 	type="text/css">
@@ -18,19 +18,55 @@
 <link href="./css/bootstrap.css.map" rel="stylesheet" type="text/css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-
+<!-- <link href="./css/style.css" rel="stylesheet" type="text/css"> -->
 <meta charset="ISO-8859-1">
 <title>NE - Excel</title>
+<style type="text/css">
+input.xtCell {
+	border: none;
+	width: 120px; // width base cella
+	font-size: 14px;
+	padding: 2px;
+}
+
+input.xtCell:hover {
+	background-color: #eee;
+}
+
+input.xtCell:focus {
+	background-color: #ccf;
+}
+
+table.xtCell {
+	border-collapse: collapse;
+}
+
+td.xtCell {
+	border: 1px solid #999;
+	padding: 0;
+	font-weight: bold;
+}
+
+tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
+	background-color: #ccc;
+	padding: 1px 3px;
+	font-weight: bold;
+	text-align: center;
+}
+.nascosto {
+	visibility: hidden;
+}
+
+.row {
+	margin-left: 20px;
+}
+
+</style>
 </head>
 <body>
 
 
 
-	<style>
-.nascosto {
-	visibility: hidden;
-}
-</style>
 
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -39,9 +75,8 @@
 					data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand"
-					href="http://emea.nttdata.com/it/home/index.html" target="_blank">|
-					NTT DATA |</a>
+				<a class="navbar-brand">
+					|<i><u>Pro</u>g<u>etto NE</u></i>|NTT DATA |</a>
 			</div>
 			<div>
 				<button type="button" class="navbar-toggle collapsed"
@@ -59,11 +94,6 @@
 		</div>
 	</div>
 	<div class="jumbotron">
-		<h1>
-			<u>|Pro</u>g<u>etto NE|</u>
-		</h1>
-
-
 	</div>
 
 	<%-- <%
@@ -71,36 +101,47 @@
 				.getContext().getSession();
 	%> --%>
 
-	<script type="text/javascript" src="js/tabella.js"></script>
 
-	<div>
-	<div class="col-md-2">
+	<div class="content">
+		<script type="text/javascript" src="js/tabella.js"></script>
 
-		<table class="table table-bordered excelt">
-		</table>
 
-	</div>
-	</div>
-	<div>
-	<br />
-	
-		<s:form cssClass="" method="post" action="saveExcel">
-			<s:textfield type="text" size="880" width="70px" cssClass=""
-				name="filename" /> 
-			Nome del file:			
-			<s:textarea rows="2" cols="30" name="jsonData" cssClass="nascosto" />
+		<div class="row">
+			<br />
 
-			<s:submit cssClass="nascosto" type="submit" value="save"
-				align="center"></s:submit>
-		</s:form>
-	</div>
-	
-	<div>
-		<footer>
-			<p>
-				&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
-			</p>
-		</footer>
+
+			<s:form theme="bootstrap" cssClass="form-horizontal" method="post"
+				action="saveExcel">
+				<s:textfield label="Filename" type="text" maxlength="50"	
+									
+					cssStyle="width:100px;" cssClass="" name="filename" />
+
+				<s:hidden name="jsonData" />
+
+				<s:submit cssClass="btn nascosto" type="submit" value="save"
+					onclick="window.packJson()" align="center" />
+			</s:form>
+		</div>
+		<p />
+
+		<div class="row">
+			<div class="col-md-2">
+				<h3>Excel table</h3>
+
+
+				<table class="table table-bordered excelt xtCell">
+				</table>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<footer>
+				<p>
+					&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
+				</p>
+			</footer>
+		</div>
 	</div>
 
 </body>

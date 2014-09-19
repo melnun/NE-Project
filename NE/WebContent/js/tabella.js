@@ -2,8 +2,8 @@ $(document).ready(
 	function() {
 		
 		document.DEBUG=false;
-		var righe=5;  // 50 in prod
-		var colonne=3 ; // 22 in prod
+		var righe=25;  // 50 in prod
+		var colonne=11 ; // 22 in prod
 		for (var i = 0; i < righe+1; i++) {
 			var row = document.querySelector("table").insertRow(-1);
 			for (var j = 0; j < colonne; j++) {
@@ -16,8 +16,11 @@ $(document).ready(
 						"<input id='"+ letter + i + "'/>"
 						: i || letter;
 						*/
+				// GG Add .xtCell as css style via $
+				
 				if (i && j) {
-					row.insertCell(-1).innerHTML ="<input id='"+ letter + i + "'/>";
+					
+					row.insertCell(-1).innerHTML ="<input  class='xtCell'  id='"+ letter + i + "'/>";
 				}else {
 					// INTESTAZIONE!  col-md-1 <td class="col-md-1">D</td>
 					row.insertCell(-1).innerHTML =i || letter ; // + " "+i+ " "+j;
@@ -39,7 +42,7 @@ $(document).ready(
 			};
 			var getter = function() {
 				var value = localStorage[elm.id] || "";
-				if (value != "") {
+				if (value != "" && document.DEBUG) {
 					console.log("Getter di " + elm.id + " Valuta:"
 							+ value);
 				}
