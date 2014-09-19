@@ -6,13 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManager {
+import org.apache.log4j.Logger;
 
+public class FileManager {
+	protected transient final Logger logger=Logger.getLogger(getClass());
 	public final String NEDATA_DIR;
 	
 		public FileManager()
 		{			
-			NEDATA_DIR=System.getenv("SystemDrive") + "/NEDATA/";
+			// MUST FINISH WITH SLASH
+			NEDATA_DIR=
+					"C:\\Users\\melenu\\ne\\NE\\WebContent\\data\\";
+					// System.getenv("SystemDrive") + "/NEDATA/";
 		}
 	
 		public  void creaDir(String user)
@@ -38,8 +43,8 @@ public class FileManager {
 		}
 
 		public  void newFile(String user, String filename) {
-			String path = "C:/NEDATA/"+user+"/"+filename+".json";
-
+			String path = NEDATA_DIR+user+"/"+filename+".json";
+			logger.debug("Path:"+path);
 			try {
 				File file = new File(path);
 
@@ -78,7 +83,7 @@ public class FileManager {
 		}
 
 		public  void WriteFile(String json, String user, String filename){
-			String path = "C:/NEDATA/"+user+"/"+filename+".json";
+			String path = NEDATA_DIR+user+"/"+filename+".json";
 			try {
 				File file = new File(path);
 				FileWriter fw = new FileWriter(file);
@@ -96,15 +101,21 @@ public class FileManager {
 			File dir = new File(NEDATA_DIR+user+"/");
 			String[] files = dir.list();
 			ArrayList<String> jsonFiles = new ArrayList<String>();
-			
-			for(String currentFile: files){
-				if ( (new File(currentFile)).isFile()
-						 && 
-						 currentFile.endsWith(".json") ){
-					jsonFiles.add(currentFile);
-				}
-						 
-			}									
+
+			if(files==null){
+				logger.warn("First user login? Path:"+dir+" does not exist");
+				dir.mkdir();				
+			}else{
+
+				for(String currentFile: files){
+					if ( !(new File(currentFile)).isDirectory()
+							&& 
+							currentFile.endsWith(".json") ){
+						jsonFiles.add(currentFile);
+					}
+
+				}		
+			}
 			return jsonFiles;
 		}
 

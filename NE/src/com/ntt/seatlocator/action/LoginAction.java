@@ -15,6 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 
 
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -89,6 +90,17 @@ public class LoginAction extends ActionSupport implements SessionAware{
 
 	}
 
+	public List<String> getCurrentFileList(){
+		String username=""+(String)session.get("username");
+		return (new FileManager()).seekFile(username);
+		
+	}
 	
+	
+	public void validate(){
+		if("".equals(getUsername())){
+			addFieldError("username", getText("Inserire username"));
+		}
+	}
 
 }

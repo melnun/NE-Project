@@ -24,8 +24,7 @@
 <style type="text/css">
 input.xtCell {
 	border: none;
-	width: 120px; // width base cella
-	font-size: 14px;
+	width: 120px; // width base cella font-size : 14px;
 	padding: 2px;
 }
 
@@ -53,6 +52,7 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 	font-weight: bold;
 	text-align: center;
 }
+
 .nascosto {
 	visibility: hidden;
 }
@@ -60,7 +60,6 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 .row {
 	margin-left: 20px;
 }
-
 </style>
 </head>
 <body>
@@ -75,8 +74,9 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 					data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand">
-					|<i><u>Pro</u>g<u>etto NE</u></i>|NTT DATA |</a>
+				<a class="navbar-brand"> |<i><u>Pro</u>g<u>etto NE</u></i>|NTT
+					DATA |
+				</a>
 			</div>
 			<div>
 				<button type="button" class="navbar-toggle collapsed"
@@ -93,8 +93,7 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron">
-	</div>
+	<div class="jumbotron"></div>
 
 	<%-- <%
 		Map<String, Object> session2 = com.opensymphony.xwork2.ActionContext
@@ -107,13 +106,19 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 
 
 		<div class="row">
+			<ol>			
+				<s:iterator value="currentFileList" status="status">
+					<li><s:property/></li>
+				</s:iterator>
+			</ol>
+		</div>
+
+		<div class="row">
+
 			<br />
-
-
 			<s:form theme="bootstrap" cssClass="form-horizontal" method="post"
 				action="saveExcel">
-				<s:textfield label="Filename" type="text" maxlength="50"	
-									
+				<s:textfield label="Filename" type="text" maxlength="50"
 					cssStyle="width:100px;" cssClass="" name="filename" />
 
 				<s:hidden name="jsonData" />
@@ -121,28 +126,30 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 				<s:submit cssClass="btn nascosto" type="submit" value="save"
 					onclick="window.packJson()" align="center" />
 			</s:form>
-		</div>
-		<p />
-
-		<div class="row">
-			<div class="col-md-2">
-				<h3>Excel table</h3>
 
 
-				<table class="table table-bordered excelt xtCell">
-				</table>
 
-			</div>
-		</div>
 
-		<div class="row">
-			<footer>
-				<p>
-					&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
-				</p>
-			</footer>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<h3>Excel table</h3>
+
+
+			<table class="table table-bordered excelt xtCell">
+			</table>
+
 		</div>
 	</div>
 
+	<div class="row">
+		<footer>
+			<p>
+				<a>&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
+			</p>
+		</footer>
+	</div>
+	</div>
 </body>
 </html>
