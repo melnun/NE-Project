@@ -108,7 +108,7 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 		<div class="row">
 			<ol>			
 				<s:iterator value="currentFileList" status="status">
-					<li><s:property/></li>
+					<li><a onclick="window.loadExcel( '${session.username}/' + $(this).html());" href="#"><s:property/></a></li>
 				</s:iterator>
 			</ol>
 		</div>
