@@ -62,7 +62,7 @@ $(document).ready(
 				});
 			});
 
-			
+			// Definisce la funzione e forza un caricamento di default dell'excel vuoto
 			(window.loadExcel=function( fileName ){
 				var url="http://127.0.0.1:8080/NE/data/"+fileName;
 				//lert('Da implementare caricamento di '+fileName);
@@ -107,7 +107,7 @@ $(document).ready(
 					console.log("LOADED "+url);
 					//window.computeAll();
 				});
-			})();
+			})("default-excel.json");
 			
 			
 			(window.computeAll = function() {

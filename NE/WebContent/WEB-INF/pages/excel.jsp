@@ -3,6 +3,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,9 +66,6 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 </head>
 <body>
 
-
-
-
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -106,9 +105,11 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 
 
 		<div class="row">
-			<ol>			
+			<ol>
 				<s:iterator value="currentFileList" status="status">
-					<li><a onclick="window.loadExcel( '${session.username}/' + $(this).html());" href="#"><s:property/></a></li>
+					<li><a
+						onclick="window.loadExcel( '${session.username}/' + $(this).html());"
+						href="#"><s:property /></a></li>
 				</s:iterator>
 			</ol>
 		</div>
@@ -130,26 +131,26 @@ tr.xtCell:first-child td.xtCell, td.xtCell:first-child {
 
 
 
-		
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<h3>Excel table</h3>
-
-
-			<table class="table table-bordered excelt xtCell">
-			</table>
 
 		</div>
-	</div>
+		<div class="row">
+			<div class="col-md-2">
+				<h3>Excel table</h3>
 
-	<div class="row">
-		<footer>
-			<p>
-				<a>&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
-			</p>
-		</footer>
-	</div>
+
+				<table class="table table-bordered excelt xtCell">
+				</table>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<footer>
+				<p>
+					<a>&copy; 2014 Ondrej Zara, Giovanni Giorgi and Nunzio Mele</a>
+				</p>
+			</footer>
+		</div>
 	</div>
 </body>
 </html>

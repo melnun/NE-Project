@@ -34,7 +34,8 @@ public class IsLoggedInterceptor implements Interceptor {
 	
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
 
-		if(session==null || session.get("user")==null){
+		if(session==null || session.get("username")==null){
+			logger.error("Utente non loggato, redirezione a login");
 			return "login";
 		}	
 		else 

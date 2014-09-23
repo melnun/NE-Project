@@ -3,32 +3,24 @@ package com.ntt.seatlocator.action;
 import gestione.file.FileManager;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-
+import com.opensymphony.xwork2.ActionSupport;
 //import com.ntt.seatlocator.beans.Utente;
 //import com.ntt.seatlocator.dao.UtenteDAO;
-
-
-
-
-
-
-
-
-
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.mysql.jdbc.Statement;
-import com.nttdata.ne.*;
 
 public class LoginAction extends ActionSupport implements SessionAware{
 	protected transient final Logger logger=Logger.getLogger(getClass());
@@ -39,11 +31,15 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 
 
-	public String execute() throws SQLException {
+	@Override
+	public String execute() throws SQLException, NamingException {
 
 		String r;
-		Connection connessione ;
-		connessione = DriverManager.getConnection("jdbc:mysql://localhost/ne?user=root");
+		
+		Context initContext = new InitialContext();
+		Context envContext  = (Context)initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource)envContext.lookup("jdbc/ne");
+		Connection connessione = ds.getConnection();
 
 		if ( this.checkUserPassword(connessione, username, password)==null)
 		{
@@ -55,7 +51,8 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		} else {
 			super.addActionError("Login incorrect");
 			r= "error";
-		}
+		}		
+		connessione.close();
 		return r;
 
 	}
@@ -77,6 +74,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 
 		return username;
 	}
+
 
 	public void setUsername(String username) {
 		logger.info("SET USERNAME="+username);
@@ -102,14 +100,16 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	}
 
 
+	@Override
 	public void validate(){
 		if("".equals(getUsername())){
 			addFieldError("username", getText("Inserire username"));
 		}
 	}
+	
 
 	@SuppressWarnings("boxing")
-	public static Integer checkUserPassword(Connection c, String username,String password)
+	public Integer checkUserPassword(Connection c, String username,String password)
 	{
 		try{
 			Connection connessione = null;

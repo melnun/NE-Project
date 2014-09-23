@@ -20,12 +20,14 @@ public class SaveExcelAction extends ActionSupport implements SessionAware {
 	private String jsonData;
 	private Map<String, Object> session;
 
+	@Override
 	public String execute() throws IOException {
 
 //		if(filename.equals("") ){
 //			return "success";
 //		}
 		String username_dir = (String)session.get("username");
+		session.put("filename", filename);
 		FileManager m = new FileManager();
 		if(m.ExistsDir())
 		{
@@ -86,7 +88,12 @@ public class SaveExcelAction extends ActionSupport implements SessionAware {
 		this.jsonData = jsonData;
 	}
 
-
+	@Override
+	public void validate(){
+		if("".equals(getFilename())){
+			addFieldError("filename", getText("Inserire nome file"));
+		}
+	}
 
 	@Override
 	public void setSession(Map<String, Object> session) {
