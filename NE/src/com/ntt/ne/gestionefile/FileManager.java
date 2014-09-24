@@ -1,4 +1,4 @@
-package gestione.file;
+package com.ntt.ne.gestionefile;
 
 import java.io.File;
 import java.io.FileWriter;

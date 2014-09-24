@@ -1,6 +1,4 @@
-package com.ntt.seatlocator.action;
-
-import gestione.file.FileManager;
+package com.ntt.ne.action;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,10 +15,11 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionSupport;
+import com.ntt.ne.gestionefile.FileManager;
 //import com.ntt.seatlocator.beans.Utente;
 //import com.ntt.seatlocator.dao.UtenteDAO;
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware{
 	protected transient final Logger logger=Logger.getLogger(getClass());
@@ -134,7 +133,6 @@ public class LoginAction extends ActionSupport implements SessionAware{
 				System.out.println(u+" , "+p);
 				if(password.equals(p))
 				{
-					System.out.println("ocropoid");
 					System.out.println(username+" , "+password);
 					loginRes = null;
 					break;

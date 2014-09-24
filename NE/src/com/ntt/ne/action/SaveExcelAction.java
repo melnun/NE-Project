@@ -1,6 +1,4 @@
-package com.ntt.seatlocator.action;
-
-import gestione.file.FileManager;
+package com.ntt.ne.action;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,6 +7,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.ntt.ne.gestionefile.FileManager;
 import com.opensymphony.xwork2.ActionSupport;
 
 

@@ -1,4 +1,4 @@
-package com.ntt.seatlocator.interceptor;
+package com.ntt.ne.interceptor;
 
 import java.util.Map;
 
