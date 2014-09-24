@@ -125,6 +125,7 @@ $(document).ready(
 
 			window.packJson=function(){
 				var dataList=[]; 
+				// TODO valutare uso di localStorage al posto di INPUTS
 				INPUTS.forEach(function(elm) {
 					if(elm.value != "" ){
 						var data={  "Position" :elm.id,
